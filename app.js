@@ -10,7 +10,8 @@ var helmet = require('helmet');
 
 
 /***Database connection*/
-let mongodb = 'mongodb+srv://Nimith:mongodbat20@local-library-cluster-gdsk5.azure.mongodb.net/local_library?retryWrites=true&w=majority' 
+let dev_db_url = 'mongodb+srv://Nimith:mongodbat20@local-library-cluster-gdsk5.azure.mongodb.net/local_library?retryWrites=true&w=majority' 
+var mongodb = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongodb,{ useNewUrlParser : true});
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
