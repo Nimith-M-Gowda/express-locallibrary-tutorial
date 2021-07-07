@@ -10,7 +10,7 @@ var helmet = require('helmet');
 
 
 /***Database connection*/
-let dev_db_url = 'mongodb+srv://Nimith:mongodbat20@local-library-cluster-gdsk5.azure.mongodb.net/local_library?retryWrites=true&w=majority' 
+let dev_db_url = `mongodb+srv://Nimith:${env.process.DBPASSWORD}@local-library-cluster-gdsk5.azure.mongodb.net/local_library?retryWrites=true&w=majority`
 var mongodb = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongodb,{ useNewUrlParser : true});
 let db = mongoose.connection;
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/nonuser', nonuserRouter) ;   
+app.use('/nonuser', nonuserRouter) ;
 app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
